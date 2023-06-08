@@ -1,0 +1,9 @@
+.galeria{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2px;
+    margin: 2px;
+}
+

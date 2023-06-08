@@ -1,0 +1,36 @@
+.contenedorFooter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(237, 235, 235, 0.411);
+}
+
+.reserva{
+font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.btn-wsp{
+    position: fixed;
+    width: 45px;
+    height: 45px;
+    line-height: 40px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #63cf85;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0px 1px 10px rgb(0, 0, 0, 3);
+    z-index: 100;
+
+}
+.btn-wsp:hover {
+    text-decoration: none;
+    color: #36d468;
+    background-color: #fff;
+}
