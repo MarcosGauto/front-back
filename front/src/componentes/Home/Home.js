@@ -18,7 +18,6 @@ const Home = () => {
                 return response.json(); // la respuesta es json
             })
             .then((json) => {
-                console.log(json);
                 setListaDeCabañas (json.alojamientos); //devuelve el json
             })
         }catch(error){

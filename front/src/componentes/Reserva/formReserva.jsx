@@ -1,24 +1,28 @@
 import ReservaHome from "./Reserva";
 import { useState } from "react";
 
-const FormReserva = ({ cabañasDisponibles }) =>{  //no asigna nombre a la funcion porque el return va el reswltardo en formReserva // 
+const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funcion porque el return va el reswltardo en formReserva // 
     
-    const [cantidadMaxima, setCantidadMaxima] = useState(cabañasDisponibles === undefined ? 0 : cabañasDisponibles[0].cantidad_de_personas) //cantidad maxima de personas de la cabaña seleccionada
+    const [cantidadMaxima, setCantidadMaxima] = useState(4) //cantidad maxima de personas de la cabaña seleccionada
     
     const getNombres = () => {
         let nombres = []; // array que se autocompleta con los nombres
         for (let i = 0; i < cabañasDisponibles.length; i++) {  //foreach por cada cabaña dentro de cabañas disponible
-            nombres.push(<option value={cabañasDisponibles[i].nombre}>{cabañasDisponibles[i].nombre}</option>) // pusheando el nombre de la cabaña
-        }console.log(cabañasDisponibles[0]);
+            nombres.push(<option key={i} value={i}>{cabañasDisponibles[i].nombre}</option>) // pusheando el nombre de la cabaña
+        };
         return nombres // returnormos nombres-
     }
 
+    
+
      // E: evento; target: elemento que dispara el evento; value: valor del elemento que dispara el evento
     const setCantidad = (e) => {
-    const indice = e.target.value; 
-    setCantidadMaxima(cabañasDisponibles[indice].cantidad_de_personas);
+        const indice = e.target.value; 
+        console.log(indice);
+        setCantidadMaxima(cabañasDisponibles[indice].cantidadPersonas);
     
-    }
+        
+    };
 
 
     return(
@@ -31,7 +35,7 @@ const FormReserva = ({ cabañasDisponibles }) =>{  //no asigna nombre a la funci
                 <label htmlFor="checkout">check in / check out</label>
                 <ReservaHome />
                 <label for="quantity">Cantidad de personas  </label>
-                <input type="number" id="quantity" name="quantity" min="1" max="5" />
+                <input type="number" id="quantity" name="quantity" min="1" max={cantidadMaxima} />
             </form>
 
         </div>
