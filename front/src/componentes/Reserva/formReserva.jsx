@@ -1,5 +1,6 @@
+import Home from "../Home/Home";
 import ReservaHome from "./Reserva";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funcion porque el return va el reswltardo en formReserva // 
     
@@ -13,16 +14,13 @@ const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funci
         return nombres // returnormos nombres-
     }
 
-    
-
      // E: evento; target: elemento que dispara el evento; value: valor del elemento que dispara el evento
     const setCantidad = (e) => {
         const indice = e.target.value; 
-        console.log(indice);
         setCantidadMaxima(cabañasDisponibles[indice].cantidadPersonas);
-    
-        
+
     };
+
 
 
     return(
@@ -35,7 +33,7 @@ const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funci
                 <label htmlFor="checkout">check in / check out</label>
                 <ReservaHome />
                 <label for="quantity">Cantidad de personas  </label>
-                <input type="number" id="quantity" name="quantity" min="1" max={cantidadMaxima} />
+                <input type="number" id="quantity" name="quantity" min="1" max={cantidadMaxima} value={cantidadMaxima} onChange={(e) => setCantidadMaxima(e.target.value)}/>
             </form>
 
         </div>
