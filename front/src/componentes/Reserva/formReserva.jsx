@@ -1,6 +1,7 @@
 import Home from "../Home/Home";
 import ReservaHome from "./Reserva";
 import { useState, useEffect } from "react";
+import "./formReserva.css"
 
 const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funcion porque el return va el reswltardo en formReserva // 
     
@@ -25,7 +26,7 @@ const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funci
 
     return(
         <div className="reservaFecha">
-            <form action="#" target="" method="get" name="formDatosPersonales">
+            <form action="#" target="" method="get" name="formDatosPersonales" className="formNav">
                 <label htmlFor="Cabañas" method="get"> Tipo de cabaña </label>
                 <select method="get" className="opcionCab" onChange={setCantidad}> 
                     {getNombres()}
@@ -33,7 +34,8 @@ const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funci
                 <label htmlFor="checkout">check in / check out</label>
                 <ReservaHome />
                 <label for="quantity">Cantidad de personas  </label>
-                <input type="number" id="quantity" name="quantity" min="1" max={cantidadMaxima} value={cantidadMaxima} onChange={(e) => setCantidadMaxima(e.target.value)}/>
+                <input type="number" id="quantity" name="quantity" className="cantidad" min="1" max={cantidadMaxima} value={cantidadMaxima} onChange={(e) => setCantidadMaxima(e.target.value)}/>
+                <button class="button-30" role="button">Reservar</button>
             </form>
 
         </div>

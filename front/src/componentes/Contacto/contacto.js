@@ -5,6 +5,7 @@ import "./contacto.css";
 
 
 
+
 const Contacto = () => {
     const { register, formState: { errors }, handleSubmit } = useForm("");
     const onSubmit = (data) => {
@@ -41,7 +42,7 @@ const Contacto = () => {
                             </div>
                             <label for="Cabañas"> Tipo de cabaña</label>
                             <select className="tipocab">
-                                <option value="cab1"> Cabaña1</option>
+                                <option value="cab2"> Cabaña1</option>
                                 <option value="cab2"> Cabaña2</option>
                                 <option value="cab3"> Cabaña3</option>
                             </select>
