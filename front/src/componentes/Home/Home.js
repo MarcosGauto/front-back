@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Home.css";
-import FormReserva from "../Reserva/formReserva";
+import CalendarDate from "../Reserva/formReserva";
 
 const API_URL = "http://127.0.0.1:3001"
 
@@ -28,7 +28,7 @@ const Home = () => {
     return (
 
         <section className="sectionintro">
-            <FormReserva cabañasDisponibles={listaDeCabañas}/>
+            <CalendarDate cabañasDisponibles={listaDeCabañas}/>
             <div className="imgdiv">
                 <img className="imgcss" alt="imgintro" />
             </div>

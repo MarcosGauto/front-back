@@ -1,12 +1,15 @@
-import Home from "../Home/Home";
 import ReservaHome from "./Reserva";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./formReserva.css"
 
+const API_URL = "http://127.0.0.1:3001"
 const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funcion porque el return va el reswltardo en formReserva // 
     
     const [cantidadMaxima, setCantidadMaxima] = useState(4) //cantidad maxima de personas de la cabaña seleccionada
-    
+    // estado de las fechas
+    const [date, setDate] = useState([])
+    console.log(date);
+
     const getNombres = () => {
         let nombres = []; // array que se autocompleta con los nombres
         for (let i = 0; i < cabañasDisponibles.length; i++) {  //foreach por cada cabaña dentro de cabañas disponible
@@ -19,10 +22,20 @@ const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funci
     const setCantidad = (e) => {
         const indice = e.target.value; 
         setCantidadMaxima(cabañasDisponibles[indice].cantidadPersonas);
-
     };
 
-
+const datesave = async(date) => {
+        await fetch(`${API_URL}/reservas/`,{
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+        fecha: date,
+        })
+        
+    });console.log(datesave)
+}
 
     return(
         <div className="reservaFecha">
@@ -32,10 +45,10 @@ const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funci
                     {getNombres()}
                 </select>
                 <label htmlFor="checkout">check in / check out</label>
-                <ReservaHome />
+                <ReservaHome setDate={setDate} />
                 <label for="quantity">Cantidad de personas  </label>
                 <input type="number" id="quantity" name="quantity" className="cantidad" min="1" max={cantidadMaxima} value={cantidadMaxima} onChange={(e) => setCantidadMaxima(e.target.value)}/>
-                <button class="button-30" role="button">Reservar</button>
+                <button class="button-30" role="button"onClick={datesave}>Reservar</button>
             </form>
 
         </div>

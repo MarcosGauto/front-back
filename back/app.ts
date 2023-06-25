@@ -2,11 +2,15 @@ import express from "express";
 import cors from "cors";
 import { alojamientosRouter } from "./router/alojamientos.router";
 import { MongoClient } from "mongodb";
+import {reservasRouter} from "./router/reservas.router";
 
 const app = express();
 app.use(cors());
 
 app.use("/alojamientos", alojamientosRouter)
+
+//armar la ruta de reservas
+app.use("/reservas", reservasRouter)
 
 // Connection URL
 const url = 'mongodb://127.0.0.1:27017';
