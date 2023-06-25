@@ -46,7 +46,7 @@ const datesave = async(date) => {
                 </select>
                 <label htmlFor="checkout">check in / check out</label>
                 <ReservaHome setDate={setDate} />
-                <label for="quantity">Cantidad de personas  </label>
+                <label for="quantity" id="cantidadPersonas">Cantidad de personas  </label>
                 <input type="number" id="quantity" name="quantity" className="cantidad" min="1" max={cantidadMaxima} value={cantidadMaxima} onChange={(e) => setCantidadMaxima(e.target.value)}/>
                 <button class="button-30" role="button"onClick={datesave}>Reservar</button>
             </form>
