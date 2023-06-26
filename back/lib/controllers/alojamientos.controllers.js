@@ -15,11 +15,14 @@ exports.alojamientosController = {
     getAlojamientos: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             let resultado = yield app_1.db.collection('Cabañas').find({}).toArray();
-            res.status(200).json({
+            return res.status(200).json({
                 "alojamientos": resultado
             });
         }
         catch (error) {
+            return res.status(500).json({
+                message: error.message
+            });
         }
     })
 };

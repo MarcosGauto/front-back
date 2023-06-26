@@ -6,12 +6,15 @@ export const alojamientosController: any = {
         try{
             let resultado: any = await db.collection('Cabañas').find({}).toArray();
 
-            res.status(200).json({
+            return res.status(200).json({
                 "alojamientos": resultado
             })
 
         } catch (error:any) {
 
+            return res.status(500).json({
+                message: error.message
+            })
         }
     }
 };

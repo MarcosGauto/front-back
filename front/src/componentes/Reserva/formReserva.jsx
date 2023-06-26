@@ -5,10 +5,11 @@ import "./formReserva.css"
 const API_URL = "http://127.0.0.1:3001"
 const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funcion porque el return va el reswltardo en formReserva // 
     
+    const [cabañaSeleccionada, setCabañaSeleccionada] = useState(0);
     const [cantidadMaxima, setCantidadMaxima] = useState(4) //cantidad maxima de personas de la cabaña seleccionada
+    const [cantidadDePersonas, setCantidadDePersonas] = useState(1);
     // estado de las fechas
     const [date, setDate] = useState([])
-    console.log(date);
 
     const getNombres = () => {
         let nombres = []; // array que se autocompleta con los nombres
@@ -21,21 +22,39 @@ const FormReserva = ({ cabañasDisponibles,}) =>{  //no asigna nombre a la funci
      // E: evento; target: elemento que dispara el evento; value: valor del elemento que dispara el evento
     const setCantidad = (e) => {
         const indice = e.target.value; 
+        setCabañaSeleccionada(cabañasDisponibles[indice]);
         setCantidadMaxima(cabañasDisponibles[indice].cantidadPersonas);
     };
 
-const datesave = async(date) => {
-        await fetch(`${API_URL}/reservas/`,{
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-        fecha: date,
-        })
+    const datesave = async () => {
+    
+        console.log('Fecha:', date);
+
+        let response = await fetch(`${API_URL}/reservas/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                inicio: date[0],
+                final: date[1],
+                cantidad: cantidadDePersonas,
+                cabaña: cabañaSeleccionada.nombre
+            })
+        });
         
-    });console.log(datesave)
-}
+        let data = await response.json();
+
+        if (!data.message) {
+            // Mostrar un alert
+            alert('Reserva guardada')
+        } else {
+            // Mostrar un alert(data.message)
+            alert(data.message);
+        }
+            
+
+    }
 
     return(
         <div className="reservaFecha">
@@ -46,9 +65,9 @@ const datesave = async(date) => {
                 </select>
                 <label htmlFor="checkout">check in / check out</label>
                 <ReservaHome setDate={setDate} />
-                <label for="quantity" id="cantidadPersonas">Cantidad de personas  </label>
-                <input type="number" id="quantity" name="quantity" className="cantidad" min="1" max={cantidadMaxima} value={cantidadMaxima} onChange={(e) => setCantidadMaxima(e.target.value)}/>
-                <button class="button-30" role="button"onClick={datesave}>Reservar</button>
+                <label htmlFor="quantity" id="cantidadPersonas">Cantidad de personas  </label>
+                <input type="number" id="quantity" name="quantity" className="cantidad" min="1" max={cantidadMaxima} value={cantidadDePersonas} onChange={(e) => setCantidadDePersonas(e.target.value)}/>
+                <button className="button-30" role="button" onClick={datesave}>Reservar</button>
             </form>
 
         </div>

@@ -1,6 +1,6 @@
 # Arrancar el back
 cd back
-npm start &
+npm run dev &
 cd ..
 
 # Arrancar el front

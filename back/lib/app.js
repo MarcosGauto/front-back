@@ -17,9 +17,12 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const alojamientos_router_1 = require("./router/alojamientos.router");
 const mongodb_1 = require("mongodb");
+const reservas_router_1 = require("./router/reservas.router");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use("/alojamientos", alojamientos_router_1.alojamientosRouter);
+//armar la ruta de reservas
+app.use("/reservas", reservas_router_1.reservasRouter);
 // Connection URL
 const url = 'mongodb://127.0.0.1:27017';
 const client = new mongodb_1.MongoClient(url);

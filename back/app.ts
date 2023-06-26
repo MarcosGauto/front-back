@@ -2,10 +2,11 @@ import express from "express";
 import cors from "cors";
 import { alojamientosRouter } from "./router/alojamientos.router";
 import { MongoClient } from "mongodb";
-import {reservasRouter} from "./router/reservas.router";
+import { reservasRouter } from "./router/reservas.router";
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 app.use("/alojamientos", alojamientosRouter)
 
