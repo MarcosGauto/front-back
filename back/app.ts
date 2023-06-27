@@ -3,7 +3,7 @@ import cors from "cors";
 import { alojamientosRouter } from "./router/alojamientos.router";
 import { MongoClient } from "mongodb";
 import { reservasRouter } from "./router/reservas.router";
-import { formularioRouter } from "./router/formulaior.router";
+import { formularioRouter } from "./router/formulario.router";
 
 const app = express();
 app.use(cors());
@@ -14,7 +14,7 @@ app.use("/alojamientos", alojamientosRouter)
 //ruta de reservas
 app.use("/reservas", reservasRouter)
 
-app.use("/formualrio", formularioRouter)
+app.use("/formulario", formularioRouter)
 
 // Connection URL
 const url = 'mongodb://127.0.0.1:27017';

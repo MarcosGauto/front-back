@@ -16,10 +16,11 @@ exports.reservasController = {
         try {
             // Desde el front vas a tener que poner en el body de la request, la informacion de la reserva
             // aca accedes desde req.body.[nombre que le pongas]
-            console.log('Req.body:', req.body);
             let resultado = (yield app_1.db.collection('Reservas')).insertOne({
                 fechaDeInicio: req.body.inicio,
-                fechaFinal: req.body.final
+                fechaFinal: req.body.final,
+                cantidad: req.body.cantidad,
+                cabaña: req.body.cabaña
             });
             return res.status(200).json({
                 "reservas": resultado

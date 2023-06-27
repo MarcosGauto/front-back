@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./componentes/Navbar/Navbar.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./componentes/Home/Home"
-import Contacto from './componentes/Contacto/contacto';
+import Contacto from './componentes/Contacto/Contacto';
 import Cabaña from "./componentes/Cabañas/cabañas";
 import Galeria from "./componentes/imagenes/Galeria";
 import Footer from "./componentes/Footer/Footer"
@@ -16,6 +16,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Switch>
+
         <Route exact path="/">
           <Home/>
 
@@ -25,7 +26,7 @@ function App() {
 
         </Route>
         <Route exact path="/Cabaña">
-          <Cabaña/>
+          <Cabaña />
 
         </Route>
         <Route exact path="/Galeria">

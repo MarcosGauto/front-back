@@ -18,11 +18,14 @@ const cors_1 = __importDefault(require("cors"));
 const alojamientos_router_1 = require("./router/alojamientos.router");
 const mongodb_1 = require("mongodb");
 const reservas_router_1 = require("./router/reservas.router");
+const formulario_router_1 = require("./router/formulario.router");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
+app.use(express_1.default.json());
 app.use("/alojamientos", alojamientos_router_1.alojamientosRouter);
-//armar la ruta de reservas
+//ruta de reservas
 app.use("/reservas", reservas_router_1.reservasRouter);
+app.use("/formulario", formulario_router_1.formularioRouter);
 // Connection URL
 const url = 'mongodb://127.0.0.1:27017';
 const client = new mongodb_1.MongoClient(url);
@@ -34,6 +37,7 @@ client.connect().then(() => {
     console.log('Connected successfully to server');
     exports.db = db = client.db(dbName);
 });
+app.use(express_1.default.urlencoded({ extended: false }));
 app.listen(3001, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log("server escuchando en el puerto 3001");
 }));

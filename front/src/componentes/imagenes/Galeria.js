@@ -10,8 +10,8 @@ const Galeria =() => {
         //lista el array vacio que se va llenando y muestra las imagenes.
         let lista =[]
         //recorre el array y lo pushea.
-        for(let i=0; i<cantidad; i++){
-            lista.push(<Imagen id={i} />)
+        for(let i = 0; i < cantidad; i++){
+            lista.push(<Imagen key={i} id={i} />)
         }
         return lista;
     }
@@ -24,7 +24,7 @@ const Galeria =() => {
 
     return(
         <div className="galeria">
-{/* Se llama a la lista */}
+        {/* Se llama a la lista */}
             {listaImagenes}
 
         </div>
