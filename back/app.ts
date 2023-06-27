@@ -25,7 +25,7 @@ const client = new MongoClient(url);
 let db: any;
 
 // Database Name
-const dbName = 'El_Remanso';
+const dbName = process.env.MONGO_DB_NAME;
 
 client.connect().then(() => {
     console.log('Connected successfully to server');
