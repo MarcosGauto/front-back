@@ -15,10 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.db = void 0;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = __importDefault(require("dotenv"));
 const alojamientos_router_1 = require("./router/alojamientos.router");
 const mongodb_1 = require("mongodb");
 const reservas_router_1 = require("./router/reservas.router");
 const formulario_router_1 = require("./router/formulario.router");
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
@@ -27,7 +29,7 @@ app.use("/alojamientos", alojamientos_router_1.alojamientosRouter);
 app.use("/reservas", reservas_router_1.reservasRouter);
 app.use("/formulario", formulario_router_1.formularioRouter);
 // Connection URL
-const url = 'mongodb://127.0.0.1:27017';
+const url = process.env.MONGO_URL || "";
 const client = new mongodb_1.MongoClient(url);
 let db;
 exports.db = db;
@@ -38,6 +40,7 @@ client.connect().then(() => {
     exports.db = db = client.db(dbName);
 });
 app.use(express_1.default.urlencoded({ extended: false }));
-app.listen(3001, () => __awaiter(void 0, void 0, void 0, function* () {
+let port = process.env.PORT || 3002;
+app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     console.log("server escuchando en el puerto 3001");
 }));

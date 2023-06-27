@@ -1,10 +1,13 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 import { alojamientosRouter } from "./router/alojamientos.router";
 import { MongoClient } from "mongodb";
 import { reservasRouter } from "./router/reservas.router";
 import { formularioRouter } from "./router/formulario.router";
 
+
+dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -17,7 +20,7 @@ app.use("/reservas", reservasRouter)
 app.use("/formulario", formularioRouter)
 
 // Connection URL
-const url = 'mongodb://127.0.0.1:27017';
+const url = process.env.MONGO_URL || "";
 const client = new MongoClient(url);
 let db: any;
 
@@ -31,7 +34,9 @@ client.connect().then(() => {
 
 app.use(express.urlencoded({extended: false}));
 
-app.listen(3001, async () => {
+let port = process.env.PORT || 3002
+
+app.listen(port, async () => {
     console.log("server escuchando en el puerto 3001");  
 });
 
