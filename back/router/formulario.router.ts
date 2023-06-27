@@ -3,6 +3,6 @@ import  Router from "express";
 
 const formularioRouter = Router();
 
-formularioRouter.post("/enviar", formularioController.enviar); // se cambia a all para ver todos
+formularioRouter.post("/enviar", formularioController.enviar); 
 
-export { formularioRouter } // renombramos router porque tambien se puede llamar asi en reservas.
+export { formularioRouter } 

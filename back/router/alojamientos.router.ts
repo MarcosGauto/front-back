@@ -3,6 +3,6 @@ import  Router from "express";
 
 const router = Router();
 
-router.get("/", alojamientosController.getAlojamientos); // se cambia a all para ver todos
+router.get("/", alojamientosController.getAlojamientos);
 
-export {router as alojamientosRouter} // renombramos router porque tambien se puede llamar asi en reservas.
+export {router as alojamientosRouter} 
